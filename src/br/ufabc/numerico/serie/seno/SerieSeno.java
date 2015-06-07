@@ -19,7 +19,6 @@
  * Contributors:
  *     Rodolfo Kohei Soken - initial API and implementation
  ******************************************************************************/
-
 package br.ufabc.numerico.serie.seno;
 
 import java.util.Scanner;
@@ -33,16 +32,40 @@ public class SerieSeno {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+//	public static void main(String[] args) {
+//
+//		metodoAnalitico();
+//
+//	}
+	public static void metodoSintetico() {
 
-		metodoAnalitico();
-
-	}
-
-	public static void metodoAnalitico() {
+		System.out.println("----------------------");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Insira a entrada:");
+		System.out.println("Insira a variavel:");
+		double entrada = sc.nextDouble();
+		System.out.println("Insira o numero de termos:");
+		int termos = sc.nextInt();
+		double resultado = 0;
+		
+			System.out.println("Qtde de Termos:" + termos);
+			// calcula a serie sem utilizar a função fatorial
+			resultado = metodoSemFatorialSeno(entrada, termos);
+			System.out.println("Metodo sem fatorial:\t" + resultado);
+
+			// calcula a serie utilizando a função fatorial
+			resultado = metodoComFatorialSeno(entrada, termos);
+			System.out.println("Metodo com fatorial:\t" + resultado);
+			System.out.println("---------------");
+
+		}
+
+	public static void metodoAnalitico() {
+
+		System.out.println("----------------------");
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Insira a variavel:");
 		double entrada = sc.nextDouble();
 		// System.out.println("Insira o numero de termos:");
 		// int termos = sc.nextInt();
@@ -51,6 +74,32 @@ public class SerieSeno {
 		// resultado < Double.POSITIVE_INFINITY
 
 		while (resultado < Double.POSITIVE_INFINITY) {
+			System.out.println("Qtde de Termos:" + i);
+			// calcula a serie sem utilizar a função fatorial
+			resultado = metodoSemFatorialSeno(entrada, i);
+			System.out.println("Metodo sem fatorial:\t" + resultado);
+
+			// calcula a serie utilizando a função fatorial
+			resultado = metodoComFatorialSeno(entrada, i);
+			System.out.println("Metodo com fatorial:\t" + resultado);
+			System.out.println("---------------");
+
+			i++;
+		}
+	}
+	
+	//Incrementa os termos até ocorrer overflow na função fatorial
+	public static void metodoAnalitico(int termos) {
+
+		System.out.println("----------------------");
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Insira a variavel:");
+		double entrada = sc.nextDouble();
+		double resultado = 0;
+		int i = 0;
+
+		while (i <= termos) {
 			System.out.println("Qtde de Termos:" + i);
 			// calcula a serie sem utilizar a função fatorial
 			resultado = metodoSemFatorialSeno(entrada, i);

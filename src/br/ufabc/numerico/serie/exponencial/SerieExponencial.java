@@ -28,23 +28,47 @@ import java.util.Scanner;
  *
  */
 public class SerieExponencial {
-	public static void main(String[] args) {
-		metodoAnalitico();
+//	public static void main(String[] args) {
+//		metodoAnalitico();
+//
+//	}
+	public static void metodoSintetico() {
 
-	}
-
-	public static void metodoAnalitico() {
+		System.out.println("----------------------");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Insira a entrada:");
+		System.out.println("Insira a variavel:");
+		double entrada = sc.nextDouble();
+		System.out.println("Insira o numero de termos:");
+		int termos = sc.nextInt();
+		double resultado = 0;
+		
+			System.out.println("Qtde de Termos:" + termos);
+			// calcula a serie sem utilizar a função fatorial
+			resultado = metodoSemFatorialExponencial(entrada, termos);
+			System.out.println("Metodo sem fatorial:\t" + resultado);
+
+			// calcula a serie utilizando a função fatorial
+			resultado = metodoComFatorialExponencial(entrada, termos);
+			System.out.println("Metodo com fatorial:\t" + resultado);
+			System.out.println("---------------");
+
+		}
+
+	//Incrementa os termos até ocorrer overflow na função fatorial
+	public static void metodoAnalitico() {
+
+		System.out.println("----------------------");
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Insira a variavel:");
 		double entrada = sc.nextDouble();
 		// System.out.println("Insira o numero de termos:");
 		// int termos = sc.nextInt();
 		double resultado = 0;
 		int i = 0;
-		//resultado < Double.POSITIVE_INFINITY
 		
-		while (i<400) {
+		while (resultado < Double.POSITIVE_INFINITY) {
 			System.out.println("Qtde de Termos:" + i);
 			// calcula a serie sem utilizar a função fatorial
 			resultado = metodoSemFatorialExponencial(entrada, i);
@@ -53,6 +77,31 @@ public class SerieExponencial {
 			// calcula a serie utilizando a função fatorial
 			resultado = metodoComFatorialExponencial(entrada, i);
 			System.out.println("Metodo com fatorial:" + resultado);
+			System.out.println("---------------");
+
+			i++;
+		}
+	}
+	
+	public static void metodoAnalitico(int termos) {
+
+		System.out.println("----------------------");
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Insira a variavel:");
+		double entrada = sc.nextDouble();
+		double resultado = 0;
+		int i = 0;
+
+		while (i <= termos) {
+			System.out.println("Qtde de Termos:" + i);
+			// calcula a serie sem utilizar a função fatorial
+			resultado = metodoSemFatorialExponencial(entrada, i);
+			System.out.println("Metodo sem fatorial:\t" + resultado);
+
+			// calcula a serie utilizando a função fatorial
+			resultado = metodoComFatorialExponencial(entrada, i);
+			System.out.println("Metodo com fatorial:\t" + resultado);
 			System.out.println("---------------");
 
 			i++;
